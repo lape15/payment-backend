@@ -18,7 +18,7 @@ export const signInUser = async (req: Request, res: Response) => {
         },
       });
       if (!user)
-        return res.status(404).send({ message: "User does not exist!" });
+        return res.status(500).send({ message: "User does not exist!" });
 
       try {
         const isValid = await bCrypt.compare(
@@ -40,15 +40,17 @@ export const signInUser = async (req: Request, res: Response) => {
             message: " ok",
             data: {
               userId: user.getDataValue("id"),
-              userEmail: user.getDataValue("email"),
+              email: user.getDataValue("email"),
               firstName: user.getDataValue("firstName"),
               lastName: user.getDataValue("lastName"),
+              balance: user.getDataValue("balance"),
+              accountNumber: user.getDataValue("accountNumber"),
             },
             token,
           });
-        }
+        } else return res.send({ message: "Invalid password!" });
       } catch (err) {
-        return res.status(500);
+        return res.status(500).send({ message: "Invalid password!" });
       }
     } catch (err) {
       console.log(err);

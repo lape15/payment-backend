@@ -39,6 +39,15 @@ export const createLocalUser = async (
     try {
       const result = await User.create(user);
 
+      const newUser = {
+        userId: result.getDataValue("id"),
+        email: result.getDataValue("email"),
+        firstName: result.getDataValue("firstName"),
+        lastName: result.getDataValue("lastName"),
+        balance: result.getDataValue("balance"),
+        accountNumber: result.getDataValue("accountNumber"),
+      };
+
       const token = jwt.sign(
         {
           userId: result.getDataValue("id"),
@@ -49,7 +58,7 @@ export const createLocalUser = async (
       );
       res.status(200).send({
         message: "Ok",
-        data: result,
+        data: newUser,
         token,
       });
     } catch (err) {

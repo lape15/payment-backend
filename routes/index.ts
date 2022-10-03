@@ -9,6 +9,7 @@ const routes = express.Router();
 import { getUsers } from "../controllers/users";
 import { auth } from "../auth";
 import { getUser } from "../controllers/user";
+import { transaction } from "../controllers/transaction";
 
 // For passport local strategy implementation
 
@@ -31,6 +32,7 @@ routes.post("/signup", createLocalUser);
 routes.get("/user", auth, getUser);
 routes.post("/login", signInUser);
 routes.get("/users", auth, getUsers);
+routes.post("/transaction", auth, transaction);
 
 // routes.get(
 //   "/google",

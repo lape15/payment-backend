@@ -38,4 +38,5 @@
     "sequelize-cli": "^6.3.0",
     "typescript": "^4.8.2"
   }
+  
 }

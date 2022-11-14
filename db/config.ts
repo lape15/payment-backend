@@ -21,7 +21,7 @@ module.exports = {
     seederStorageTableName: "sequelize_seeder",
   },
   test: {
-    dialect: "sqlite",
+    dialect: "mysql",
     name: "hifast_test",
     database: "hifast_test",
     storage: "./db.sqlite",
@@ -34,7 +34,7 @@ module.exports = {
   },
 
   production: {
-    dialect: "postgres",
+    dialect: "mysql",
     host: process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT
       ? parseFloat(process.env.DATABASE_PORT)
